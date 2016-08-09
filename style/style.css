@@ -1,6 +1,8 @@
 body {
       font: 400 15px/1.8 Lato, 'Open Sans', sans-serif;
       color: #222;
+      padding: 0px;
+
   }
   h3, h4 {
       margin: 10px 0 30px 0;
@@ -10,8 +12,21 @@ body {
       color: #111;
   }
   .container {
-      padding: 80px 120px;
+      padding: 0px 0px 0px 0px;
+      border: solid 2px pink;
   }
+
+  .map {
+    padding: 100px;
+  }
+
+  .blue {
+      background-color: blue;
+  }
+  .red {
+      background-color: red;
+  }
+
   .person {
       border: 10px solid transparent;
       margin-bottom: 25px;
@@ -84,12 +99,12 @@ body {
       font-family: 'Open Sans', sans-serif;
       color: #222;
   }
-  #googleMap {
+  /*#googleMap {
       width: 100%;
       height: 400px;
       -webkit-filter: grayscale(100%);
       filter: grayscale(100%);
-  }
+  }*/
   .navbar {
       font-family: 'Open Sans', Montserrat, sans-serif;
       margin-bottom: 0;
@@ -166,7 +181,7 @@ body {
 div span {
    font-family: 'Open Sans', sans-serif;
    color: #eee;
-   position: absolute; 
+   position: absolute;
    top: 300px;
    width: 100%;
    text-align: center;
