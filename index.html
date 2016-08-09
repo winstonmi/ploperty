@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright --><!-- Still, you deserve a good mention :) -->
+  <title>Krafty Engineering - Justin Chan</title>
+    <meta charset="utf-8">
+    <META name="viewport" content="width=device-width, initial-scale=1">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"></script> 
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="./style/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body ng-app="APIdotYouApp" ng-controller="APIdotYouController as APIdotYou" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#myPage">Krafty Engineering</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#myPage">HOME</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#skills">SKILLS</a></li>
+        <li><a href="#projects">PROJECTS</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="jumbotron-image" class="jumbotron widewrapper">
+      <img class="img-filter" src="./img/pexels-photo-14676-1.png" alt="scence1">
+      <div>
+        <span>
+          <h3><strong>Hi, I'm Justin!</strong></h3>
+          <h3>Actuary. Aspiring web and blockchain developer.</h3>  
+          </span>
+      </div>
+</div>
+
+<!-- Container (About Section) -->
+<div id="about" class="container text-center">
+  <h3 class="text-center">{{APIdotYou.oneself.summary.name}}</h3>
+  <p><em>I like to solve problems!</em></p>
+  <p>This often means listening to clients and getting to the heart of the problem, 
+    <em>before</em> spending lots of money and time doing 1 million Monte Carlo simulations or 
+    due diligence on a billion-dollar acquisition. Or worse, creating products and writing reports 
+    that <em>NOBODY</em> needs.</p> 
+    <br />
+    <p>Maybe, all you need is some Dutch courage to ask the girl at the bar out...</p>
+    <br />
+    <p>Partial Differential Equations? Hmm....</p>
+    <br />
+    <p>Hey, I'm listening...</p>
+    <br/ >  
+ </div>
+
+
+<!-- Container (skills Section) -->
+<div id="skills" class="bg-1">
+  <div class="container">
+    <h3 class="text-center">Skills</h3>
+    <p class="text-center">Applying my skills to solve problems, and get paid.
+      <br>See anything familiar?
+      </p>
+    
+    <div class="row text-center">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="thumbnail">
+          <br />
+          <p><strong>Actuarial Science</strong></p>
+          <p>Insurance or Finance-related</p>
+          <a href="#contact">
+          <button class="btn" data-toggle="modal" data-target="#myModal">Tell me more about it.</button>
+          </a>
+          <br /><br />
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="thumbnail">
+          <br />
+          <p><strong>Programming</strong></p>
+          <p><skill ng-repeat="skil in APIdotYou.oneself.skills">{{skil.name}} </skill></p>
+          <a href="#contact">
+          <button class="btn" data-toggle="modal" data-target="#myModal">Code an app?</button>
+          </a>
+          <br /><br />
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="thumbnail">
+          <br />
+          <p><strong>Others</strong></p>
+          <p>Catch all scenario...</p>
+          <a href="#contact">
+          <button class="btn" data-toggle="modal" data-target="#myModal">Let's chat over coffee - you're buying!</button>
+          </a>
+          <br /><br />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<br>
+
+<div id="projects" class="container">
+  <h3 class="text-center">Projects</h3>
+
+  <ul class="nav nav-tabs" data-tabs="tabs">
+    <li class="active"><a data-toggle="tab" href="#color-crush">Color Crush</a></li>
+    <li><a data-toggle="tab" href="#stash">Stash</a></li>
+    <li><a data-toggle="tab" href="#wpw">Weird Pokemon Wiki</a></li>
+  </ul>
+
+  <div class="tab-content" style="text-align:center">
+    <div id="color-crush" class="tab-pane fade in active" >
+      <br />
+      <h3>Color Crush - a Match-Three Game</h3>
+      <p>A Candy-Crush clone made with HTML, CSS and Javascript. Go have fun <a href="">here!</a></p>
+      <img src="./img/color-crush.png" alt="Color Crush"></img>
+    </div>
+
+    <div id="stash" class="tab-pane fade">
+      <br />
+      <h3>Stash</h3>
+      <p>Webpage bookmarking app. A group project made with Node.js, MongoDB and Materialize. 
+        Prototype <a href="https://willhtam.github.io/Stash/login">here</a></p>
+      <img align="middle" src="./img/stash.png" alt="Color Crush"></img>
+    </div>
+
+    <div id="wpw" class="tab-pane fade">
+      <br />
+      <h3>Weird Pokemon Wiki</h3>
+      <p>I mean, sometimes I enjoy crafting code, but other times I enjoy 
+        <a href="https://afternoon-savannah-34323.herokuapp.com/"><em>other</em> things.</a></p>
+      <img src="./img/weird-pokemon-wiki.png" alt="Color Crush"></img>
+    </div>
+
+  </div>
+
+</div> <!-- closes tab contents-->
+
+</div>
+
+<!-- Container (Contact Section) -->
+<div id="contact" class="bg-1">
+<div  class="container">
+  <h3 class="text-center">Contact</h3>
+  <p class="text-center"><em>I love my fans! Wanna chat? Drop a note.</em></p>
+
+  <div class="row col-sm-4 col-sm-offset-4">
+      <p class="text-center">Location: Singapore, United Kingdom</span></p>
+      <p class="text-center">Phone: +65 90403074, <br />+44 (0)7810136814 </span></p>
+      <p class="text-center">Email: <a href="mailto:justinchanuk@gmail.com?Subject=Contact:%20Krafty%20Engineering%20Page" target="_top">justinchanuk@gmail.com</a></span></p>
+      <p class="text-center" ng-repeat="lnk in APIdotYou.oneself.links"><a href="{{lnk.link}}">{{lnk.name}}</a></p>
+  </div>
+</div>
+</div>
+
+<!-- Footer -->
+<footer class="text-center">
+  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p>This theme was made by <a href="http://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a>, 
+  and re-engineered (a.k.a. hacked together) with Angular 1 goodness by yours truly...</p>
+</footer>
+
+  <script>
+    var app = angular.module('APIdotYouApp',[]);
+
+     app.controller('APIdotYouController', function($http, $rootScope){
+         var APIdotYou = this;
+         APIdotYou.oneself  = null;
+                  
+         APIdotYou.getData = function() {
+             $http.get('https://obscure-mesa-68731.herokuapp.com/all').success(function(data) {
+                 APIdotYou.oneself = data.oneself
+                 console.log('Get request success')
+             }) //close $http
+        }()//close getData function and run it
+
+     })//close angular controller
+
+  </script> 
+
+</body>
+</html>
+
