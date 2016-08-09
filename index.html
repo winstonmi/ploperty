@@ -7,15 +7,25 @@
     <META name="viewport" content="width=device-width, initial-scale=1">
     <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
     <META HTTP-EQUIV="Expires" CONTENT="-1">
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script> 
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Mapbox.js -->
+    <script src='https://api.mapbox.com/mapbox.js/v2.2.4/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.2.4/mapbox.css' rel='stylesheet' />
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <link href="./style/style.css" rel="stylesheet" type="text/css">
+
+    <style>
+      body { margin:0; padding:0; }
+      .map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
 </head>
 
 <body ng-app="APIdotYouApp" ng-controller="APIdotYouController as APIdotYou" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -42,12 +52,15 @@
   </div>
 </nav>
 
+<!-- Mapbox -->
+<div id='map-one' class='map col-md-7'> </div>
+
 <div id="jumbotron-image" class="jumbotron widewrapper">
       <img class="img-filter" src="./img/pexels-photo-14676-1.png" alt="scence1">
       <div>
         <span>
           <h3><strong>Hi, I'm Justin!</strong></h3>
-          <h3>Actuary. Aspiring web and blockchain developer.</h3>  
+          <h3>Actuary. Aspiring web and blockchain developer.</h3>
           </span>
       </div>
 </div>
@@ -56,17 +69,17 @@
 <div id="about" class="container text-center">
   <h3 class="text-center">{{APIdotYou.oneself.summary.name}}</h3>
   <p><em>I like to solve problems!</em></p>
-  <p>This often means listening to clients and getting to the heart of the problem, 
-    <em>before</em> spending lots of money and time doing 1 million Monte Carlo simulations or 
-    due diligence on a billion-dollar acquisition. Or worse, creating products and writing reports 
-    that <em>NOBODY</em> needs.</p> 
+  <p>This often means listening to clients and getting to the heart of the problem,
+    <em>before</em> spending lots of money and time doing 1 million Monte Carlo simulations or
+    due diligence on a billion-dollar acquisition. Or worse, creating products and writing reports
+    that <em>NOBODY</em> needs.</p>
     <br />
     <p>Maybe, all you need is some Dutch courage to ask the girl at the bar out...</p>
     <br />
     <p>Partial Differential Equations? Hmm....</p>
     <br />
     <p>Hey, I'm listening...</p>
-    <br/ >  
+    <br/ >
  </div>
 
 
@@ -77,7 +90,7 @@
     <p class="text-center">Applying my skills to solve problems, and get paid.
       <br>See anything familiar?
       </p>
-    
+
     <div class="row text-center">
       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <div class="thumbnail">
@@ -115,7 +128,7 @@
     </div>
   </div>
 </div>
-  
+
 <br>
 
 <div id="projects" class="container">
@@ -138,7 +151,7 @@
     <div id="stash" class="tab-pane fade">
       <br />
       <h3>Stash</h3>
-      <p>Webpage bookmarking app. A group project made with Node.js, MongoDB and Materialize. 
+      <p>Webpage bookmarking app. A group project made with Node.js, MongoDB and Materialize.
         Prototype <a href="https://willhtam.github.io/Stash/login">here</a></p>
       <img align="middle" src="./img/stash.png" alt="Color Crush"></img>
     </div>
@@ -146,7 +159,7 @@
     <div id="wpw" class="tab-pane fade">
       <br />
       <h3>Weird Pokemon Wiki</h3>
-      <p>I mean, sometimes I enjoy crafting code, but other times I enjoy 
+      <p>I mean, sometimes I enjoy crafting code, but other times I enjoy
         <a href="https://afternoon-savannah-34323.herokuapp.com/"><em>other</em> things.</a></p>
       <img src="./img/weird-pokemon-wiki.png" alt="Color Crush"></img>
     </div>
@@ -177,7 +190,7 @@
   <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
-  <p>This theme was made by <a href="http://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a>, 
+  <p>This theme was made by <a href="http://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a>,
   and re-engineered (a.k.a. hacked together) with Angular 1 goodness by yours truly...</p>
 </footer>
 
@@ -187,7 +200,7 @@
      app.controller('APIdotYouController', function($http, $rootScope){
          var APIdotYou = this;
          APIdotYou.oneself  = null;
-                  
+
          APIdotYou.getData = function() {
              $http.get('https://obscure-mesa-68731.herokuapp.com/all').success(function(data) {
                  APIdotYou.oneself = data.oneself
@@ -197,8 +210,19 @@
 
      })//close angular controller
 
-  </script> 
+  </script>
+
+  <!-- Mapbox.js -->
+  <script>
+  L.mapbox.accessToken = 'pk.eyJ1Ijoid2luc3Rvbm1pIiwiYSI6ImNpcmx2NTJ5MjAwNWJmYW02bGZiMmN6ZmMifQ.DfLwDrBNUttzcAazjo6pqw';
+    L.mapbox.map('map-one', 'mapbox.streets', {
+  // the options here prevent mouse wheel or trackpad scrolling
+  // and restrict the zooms to zoom levels 14 through 18
+  scrollWheelZoom: false,
+  maxZoom: 14,
+  minZoom: 10
+  }).setView([1.3521,103.8198], 12);
+  </script>
 
 </body>
 </html>
-

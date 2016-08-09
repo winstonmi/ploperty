@@ -1,2 +1,2 @@
 # Ploperty
-Client Application to API dot You
+Front-End Application for Project 4b
