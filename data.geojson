@@ -1,48 +1,107 @@
 {
   "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
   "features": [
     {
       "type": "Feature",
+      "properties": {
+        "name": "Van Dorn Street",
+        "marker-color": "#0000ff",
+        "marker-symbol": "rail-metro",
+        "line": "blue"
+      },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          103.8198,
-          1.3521
+          103.8452993,
+          1.2683523
         ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Farragut North",
+        "marker-color": "#ff0000",
+        "marker-symbol": "rail-metro",
+        "line": "red"
       },
-      "properties": {}
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.7605783,
+          1.3588624
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Woodley Park-Zoo Adams Morgan",
+        "marker-color": "#ff0000",
+        "marker-symbol": "rail-metro",
+        "line": "red"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8452993,
+          1.3017934
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Archives-Navy Mem'l",
+        "marker-color": "#008000",
+        "marker-symbol": "rail-metro",
+        "line": "green"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8409713,
+          1.3279234
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Waterfront",
+        "marker-color": "#008000",
+        "marker-symbol": "rail-metro",
+        "line": "green"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8365383,
+          1.3028874
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ronald Reagan Washington National Airport",
+        "marker-color": "#0000ff",
+        "marker-symbol": "rail-metro",
+        "line": "blue"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8318193,
+          31.4323004
+        ]
+      }
     }
   ]
-},
-{
-  "type": "Feature",
-  "properties": {
-    "name": "Franconia-Springfield",
-    "marker-color": "#0000ff",
-    "marker-symbol": "rail-metro",
-    "line": "blue"
-  },
-  "geometry": {
-    "type": "Point",
-    "coordinates": [
-      103.8841543,
-      1.3124484
-    ]
-  }
-},
-{
-  "type": "Feature",
-  "properties": {
-    "name": "Franconia-Springfield",
-    "marker-color": "#0000ff",
-    "marker-symbol": "rail-metro",
-    "line": "blue"
-  },
-  "geometry": {
-    "type": "Point",
-    "coordinates": [
-      103.8272253,
-      1.3032424
-    ]
-  }
 }
