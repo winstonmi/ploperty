@@ -190,7 +190,7 @@
         .setView([38.9, -77], 11)
         .addLayer(L.mapbox.tileLayer('mapbox.light'));
       L.mapbox.featureLayer()
-        .loadURL('https://raw.githubusercontent.com/gabrielle-ong/winston/master/stations.geojson')
+        .loadURL('https://raw.githubusercontent.com/winstonmi/ploperty/gh-pages/data.geojson')
         .on('ready', function(e) {
           var clusterGroup = new L.MarkerClusterGroup();
           e.target.eachLayer(function(layer) {
