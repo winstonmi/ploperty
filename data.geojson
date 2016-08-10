@@ -10,15 +10,15 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Van Dorn Street",
-        "marker-color": "#0000ff",
-        "marker-symbol": "rail-metro",
-        "line": "blue"
+        "name": "Reflections at Keppel Bay",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          103.8452993,
+          103.8120803,
           1.2683523
         ]
       }
@@ -26,10 +26,10 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Farragut North",
-        "marker-color": "#ff0000",
-        "marker-symbol": "rail-metro",
-        "line": "red"
+        "name": "Hillbrooks",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
       },
       "geometry": {
         "type": "Point",
@@ -42,10 +42,10 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Woodley Park-Zoo Adams Morgan",
-        "marker-color": "#ff0000",
-        "marker-symbol": "rail-metro",
-        "line": "red"
+        "name": "Parc Sophia",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
       },
       "geometry": {
         "type": "Point",
@@ -58,9 +58,9 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Archives-Navy Mem'l",
+        "name": "Vista Residences",
         "marker-color": "#008000",
-        "marker-symbol": "rail-metro",
+        "marker-symbol": "building",
         "line": "green"
       },
       "geometry": {
@@ -74,9 +74,9 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Waterfront",
+        "name": "QBay Residences",
         "marker-color": "#008000",
-        "marker-symbol": "rail-metro",
+        "marker-symbol": "building",
         "line": "green"
       },
       "geometry": {
@@ -90,16 +90,208 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Ronald Reagan Washington National Airport",
-        "marker-color": "#0000ff",
-        "marker-symbol": "rail-metro",
-        "line": "blue"
+        "name": "157 Yishun Street 11",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           103.8318193,
-          31.4323004
+          1.4323004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Mercury",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8248403,
+          1.2961524
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Southbank",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8621543,
+          1.3057804
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "13 Marsiling Lane",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.7771583,
+          1.4415934
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "City Square Residences",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8558653,
+          1.3107264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hillcrest Villa",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8035743,
+          1.3286014
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Horizon Towers",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8305293,
+          1.2976264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Viento",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8841543,
+          1.3124484
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pearl Bank Apartment",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8272253,
+          1.3032424
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Icon",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8423663,
+          1.2755064
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Scotts Square",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8305383,
+          1.3058164
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pastoral View",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8456782,
+          1.3232964
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Berth by the Cove",
+        "marker-color": "#008000",
+        "marker-symbol": "building",
+        "line": "green"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8442953,
+          1.2491174
         ]
       }
     }
