@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright --><!-- Still, you deserve a good mention :) -->
+  <title>Krafty Engineering - Justin Chan</title>
+    <meta charset="utf-8">
+    <META name="viewport" content="width=device-width, initial-scale=1">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Mapbox.js -->
+    <script src='https://api.mapbox.com/mapbox.js/v2.2.4/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.2.4/mapbox.css' rel='stylesheet' />
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="./style/style.css" rel="stylesheet" type="text/css">
+
+    <style>
+      body { margin:0; padding:0; }
+      .map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+
+<body ng-app="APIdotYouApp" ng-controller="APIdotYouController as APIdotYou" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<!-- Leaflet (Marker Cluster Section) -->
+  <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
+  <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#myPage">PLOPERTY BUDDHA</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#myPage">HOME</a></li>
+        <li><a href="#data">DATA</a></li>
+        <li><a href="#search">SEARCH</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="mapbox">
+  <div id='map-cluster' class='map'>
+</div>
+<div id='search'>
+  <form class="navbar-form">
+    <div class="form-group">
+      <input type="text" class="form-control" style='opacity: 1.0;' placeholder="Search">
+    </div>
+    <button type="submit" class="btn btn-default opacity-full">Submit</button>
+  </form>
+</div>
+
+
+<!-- Container (data Section) -->
+<div id="data" class="bg-1">
+  <div class="container">
+    <h3 class="text-center">DATA</h3>
+    <p class="text-center">Let's take a look at the numbers.
+      </p>
+
+    <div class="row text-center">
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="thumbnail">
+          <br />
+          <p><strong>Prices</strong></p>
+          <p>How much?</p>
+          <a href="#search">
+            <div class="">
+
+            </div>
+          </a>
+          <br /><br />
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="thumbnail">
+          <br />
+          <p><strong>Size</strong></p>
+          <p>How big?</p>
+          <a href="#search">
+            <div class="">
+
+            </div>
+          </a>
+          <br /><br />
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="thumbnail">
+          <br />
+          <p><strong>Agents</strong></p>
+          <p>Who to talk to?</p>
+          <a href="#search">
+            <div class="">
+
+            </div>
+          </a>
+          <br /><br />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="text-center">
+  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p>&copy; 2016 Just Mi. All rights reserved</p>
+</footer>
+
+  <script>
+    var app = angular.module('APIdotYouApp',[]);
+
+     app.controller('APIdotYouController', function($http, $rootScope){
+         var APIdotYou = this;
+         APIdotYou.oneself  = null;
+
+         APIdotYou.getData = function() {
+             $http.get('https://obscure-mesa-68731.herokuapp.com/all').success(function(data) {
+                 APIdotYou.oneself = data.oneself
+                 console.log('Get request success')
+             }) //close $http
+        }()//close getData function and run it
+
+     })//close angular controller
+
+  </script>
+
+
+  <!-- Mapbox.js -->
+  <script>
+  $(function() {
+    console.log("hi")
+    L.mapbox.accessToken = 'pk.eyJ1Ijoid2luc3Rvbm1pIiwiYSI6ImNpcmx2NTJ5MjAwNWJmYW02bGZiMmN6ZmMifQ.DfLwDrBNUttzcAazjo6pqw';
+    // var geojson = [
+    //   {
+    //     "type": "FeatureCollection",
+    //     "features": [
+    //       {
+    //         "type": "Feature",
+    //         "geometry": {
+    //           "type": "Point",
+    //           "coordinates": [
+    //             103.8198,
+    //             1.3521
+    //           ]
+    //         },
+    //         "properties": {}
+    //       }
+    //     ]
+    //   }
+    //
+    // ];
+      // var mapCluster = L.mapbox.map('map-cluster')
+      //   .setView([1.3521,103.8198], 12)
+      //   .addLayer(L.mapbox.tileLayer('mapbox.light'));
+      // L.mapbox.featureLayer()
+      //   .loadURL('data.geojson')
+      //   .on('ready', function(e) {
+      //     var clusterGroup = new L.MarkerClusterGroup();
+      //     e.target.eachLayer(function(layer) {
+      //         clusterGroup.addLayer(layer);
+      //   });
+      //   mapCluster.addLayer(clusterGroup);
+      // });
+      // mapCluster.scrollWheelZoom.disable();
+
+      //US data
+      var mapCluster = L.mapbox.map('map-cluster')
+        .setView([38.9, -77], 11)
+        .addLayer(L.mapbox.tileLayer('mapbox.light'));
+      L.mapbox.featureLayer()
+        .loadURL('https://raw.githubusercontent.com/gabrielle-ong/winston/master/stations.geojson')
+        .on('ready', function(e) {
+          var clusterGroup = new L.MarkerClusterGroup();
+          e.target.eachLayer(function(layer) {
+              clusterGroup.addLayer(layer);
+        });
+        mapCluster.addLayer(clusterGroup);
+      });
+      mapCluster.scrollWheelZoom.disable();
+
+    // Styling for Marker
+      // var myLayer = L.mapbox.featureLayer(geojson, {
+      //   pointToLayer: function(feature, latlon) {
+      //     return L.circleMarker(latlon, {
+      //       fillColor: '#ff0000',
+      //       fillOpacity: 0.8,
+      //       stroke: false
+      //     });
+      //   }
+      // }).addTo(map);
+
+  })
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+var geojson = [
+  {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            103.8198,
+            1.3521
+          ]
+        },
+        "properties": {}
+      }
+    ]
+  },
+  {
+      "type": "Feature",
+      "properties": {
+        "name": "Franconia-Springfield",
+        "marker-color": "#0000ff",
+        "marker-symbol": "rail-metro",
+        "line": "blue"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8841543,
+          1.3124484
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Franconia-Springfield",
+        "marker-color": "#0000ff",
+        "marker-symbol": "rail-metro",
+        "line": "blue"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8272253,
+          1.3032424
+        ]
+      }
+    },
+
+];
