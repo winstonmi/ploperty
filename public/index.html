@@ -121,9 +121,11 @@
                 </p>
               </div> -->
                 <p>Number of Listings {{ countListings()  }}</p>
-                <p>Avg Price {{ averagePrice() | currency  }}</p>
+                <p>Number of Beds {{ countBeds()  }}</p>
+                <p>Avg Monthly Rental {{ averagePrice() | currency  }}</p>
                 <p>Avg PSF {{ averagePSF() | currency }}</p>
-
+                <p>Highest Rental {{ highestRental() | currency }}</p>
+                <p>Lowest Rental {{ lowestRental() | currency }}</p>
             </div>
           </a>
           <br /><br />
@@ -232,6 +234,30 @@
           return count;
         }
 
+        $scope.countBeds = function() {
+          if($scope.items===undefined ||  $scope.items.features.length===0) return 0
+
+          var count =0;
+          var searchTerm;
+          if($scope.searchFilter === undefined ) {
+            searchTerm = ''
+          } else {
+            searchTerm=$scope.searchFilter.concat(' ')
+          }
+
+          //if (searchTerm == 'Singapore' ) searchTerm = ''
+          // console.log(searchTerm)
+          // console.log('Singapore')
+          // console.log("test singapore: " + (searchTerm == 'Singapore '))
+          // console.log("length: " + searchTerm.length + ' ' + 'Singapore '.length)
+          for(var i=0; i<$scope.items.features.length; i++) {
+            if(searchTerm === '' || searchTerm == 'Singapore ' || $scope.items.features[i].properties.district==searchTerm){
+              count += $scope.items.features[i].properties.bed_no;
+            }
+          }
+          return count;
+        }
+
         $scope.averagePrice = function() {
           if($scope.items===undefined ||  $scope.items.features.length===0) return 0
 
@@ -318,6 +344,45 @@
             }
           }
           return sum/count;
+        }
+
+        $scope.highestRental = function() {
+          if($scope.items===undefined ||  $scope.items.features.length===0) return 0
+
+          var maxpx =0;
+          var searchTerm;
+          if($scope.searchFilter === undefined ) {
+            searchTerm = ''
+          } else {
+            searchTerm=$scope.searchFilter.concat(' ')
+          }
+
+          for(var i=0; i<$scope.items.features.length; i++) {
+            if(searchTerm === '' || searchTerm == 'Singapore ' || $scope.items.features[i].properties.district==searchTerm){
+                if($scope.items.features[i].properties.price2 > maxpx)
+                  maxpx = $scope.items.features[i].properties.price2
+            }
+          }
+          return maxpx;
+        }
+        $scope.lowestRental = function() {
+          if($scope.items===undefined ||  $scope.items.features.length===0) return 0
+
+          var minpx = $scope.highestRental();
+          var searchTerm;
+          if($scope.searchFilter === undefined ) {
+            searchTerm = ''
+          } else {
+            searchTerm=$scope.searchFilter.concat(' ')
+          }
+
+          for(var i=0; i<$scope.items.features.length; i++) {
+            if(searchTerm === '' || searchTerm == 'Singapore ' || $scope.items.features[i].properties.district==searchTerm){
+                if($scope.items.features[i].properties.price2 < minpx)
+                  minpx = $scope.items.features[i].properties.price2
+            }
+          }
+          return minpx;
         }
 
      })//close angular controller
