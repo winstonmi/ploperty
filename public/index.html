@@ -108,8 +108,7 @@
           <br />
           <p><strong>Prices</strong></p>
           <p>How much?</p>
-          <a href="#search">
-            <div class="">
+            <div class="text-primary">
               <!-- <p>Avg Price: {{Ploperty.avg_price | currency: 'SGD'}}</p> -->
 
               <!-- <p>Avg Price: {{ averagePrice(items.features) | filter:{'district':searchFilter} | currency: 'SGD' }}</p> -->
@@ -120,14 +119,9 @@
                     Avg Price: {{ sum }}
                 </p>
               </div> -->
-                <p>Number of Listings {{ countListings()  }}</p>
-                <p>Number of Beds {{ countBeds()  }}</p>
-                <p>Avg Monthly Rental {{ averagePrice() | currency  }}</p>
-                <p>Avg PSF {{ averagePSF() | currency }}</p>
-                <p>Highest Rental {{ highestRental() | currency }}</p>
-                <p>Lowest Rental {{ lowestRental() | currency }}</p>
+                <p>Number of Listings: {{ countListings()  }}</p>
+                <p>Number of Beds: {{ countBeds()  }}</p>
             </div>
-          </a>
           <br /><br />
         </div>
       </div>
@@ -136,31 +130,51 @@
           <br />
           <p><strong>Size</strong></p>
           <p>How big?</p>
-          <a href="#search">
             <div class="">
-              <p>Average Size per Listing {{ averageSize() | number:2 }}</p>
-             <p>Average Number Bedrooms per Listing {{ averageBeds() | number:2  }}</p>
+              <p>Average Monthly Rental: {{ averagePrice() | currency  }}</p>
+              <p>Average PSF: {{ averagePSF() | currency }}</p>
+              <p>Highest Rental: {{ highestRental() | currency }}</p>
+              <p>Lowest Rental: {{ lowestRental() | currency }}</p>
             </div>
-          </a>
           <br /><br />
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
         <div class="thumbnail">
-          <br />
-          <p><strong>Agents</strong></p>
-          <p>Who to talk to?</p>
-          <a href="#search">
+          <h4>Agents</h4>
+          <h5>Who to talk to?</h5>
+          <br>
             <div class="">
-
+              <p>Average Size per Listing: {{ averageSize() | number:2 }}</p>
+             <p>Average Number Bedrooms per Listing: {{ averageBeds() | number:2  }}</p>
             </div>
-          </a>
-          <br /><br />
         </div>
       </div>
     </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <table class="table table-striped">
+            <tr>
+              <th>Property Type</th>
+              <th>Number of Listings</th>
+              <th>Average Monthly Rental</th>
+              <th>Average Size</th>
+            </tr>
+            <tr ng-repeat="ptype in propertyTypeData()">
+                <td>{{ptype.name}}</td>
+                <td>{{ptype.listings}}</td>
+                <td>{{ptype.AvgRental | currency }}</td>
+                <td>{{ptype.AvgSize | number:2}}</td>
+            </tr>
+          </table>
+        </div>
+    </div>
+
+
+
   </div>
 </div>
+
 
 <!-- Footer -->
 <footer class="text-center">
@@ -383,6 +397,60 @@
             }
           }
           return minpx;
+        }
+
+        $scope.propertyTypeData = function() {
+          if($scope.items===undefined ||  $scope.items.features.length===0) return 0
+          var condo = { "name": "Condo", "listings": 0, "sumRental": 0, "AvgRental": 0, "sumSize": 0, "AvgSize": 0}
+          var hdb = {"name": "HDB", "listings": 0, "sumRental": 0, "AvgRental": 0, "sumSize": 0, "AvgSize": 0}
+          var landed = {"name": "Landed", "listings": 0,"sumRental": 0, "AvgRental": 0, "sumSize": 0, "AvgSize": 0}
+          var searchTerm;
+          if($scope.searchFilter === undefined ) {
+            searchTerm = ''
+          } else {
+            searchTerm=$scope.searchFilter.concat(' ')
+          }
+
+          for(var i=0; i<$scope.items.features.length; i++) {
+            if(searchTerm === '' || searchTerm == 'Singapore ' || $scope.items.features[i].properties.district==searchTerm){
+                 var ptype= $scope.items.features[i].properties.property_type
+                if(ptype == 'Apartment' || ptype == 'Condominium' || ptype == 'Walk-up') {
+                  condo.listings +=1
+                  condo.sumRental += $scope.items.features[i].properties.price2
+                  condo.sumSize += $scope.items.features[i].properties.size2
+                } else if  ( ptype == 'HDB Apartment' || ptype == 'Executive Condominium') {
+                  hdb.listings +=1
+                  hdb.sumRental += $scope.items.features[i].properties.price2
+                  hdb.sumSize += $scope.items.features[i].properties.size2
+                } else {
+                  landed.listings +=1
+                  landed.sumRental += $scope.items.features[i].properties.price2
+                  landed.sumSize += $scope.items.features[i].properties.size2
+                }
+            }
+          }
+          if(condo.listings === 0 ) {
+            condo.AvgRental = 0
+          } else {
+          condo.AvgRental = condo.sumRental/condo.listings;
+          condo.AvgSize = condo.sumSize/condo.listings;
+          }
+
+          if(hdb.listings === 0 ) {
+            hdb.AvgRental = 0
+          } else {
+          hdb.AvgRental = hdb.sumRental/hdb.listings;
+          hdb.AvgSize = hdb.sumSize/hdb.listings;
+          }
+
+          if(landed.listings === 0 ) {
+            landed.AvgRental = 0
+          } else {
+          landed.AvgRental = landed.sumRental/landed.listings;
+          landed.AvgSize = landed.sumSize/landed.listings;
+          }
+
+          return [hdb, condo, landed];
         }
 
      })//close angular controller
