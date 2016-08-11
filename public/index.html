@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Theme Made By www.w3schools.com - No Copyright --><!-- Still, you deserve a good mention :) -->
-  <title>Krafty Engineering - Justin Chan</title>
+  <title>Ploperty - Just Mi</title>
     <meta charset="utf-8">
     <META name="viewport" content="width=device-width, initial-scale=1">
     <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
@@ -61,7 +61,7 @@
 <div id='search'>
   <form class="navbar-form">
     <div class="form-group">
-      <input type="text" class="form-control" style='opacity: 1.0;' placeholder="Search">
+      <input type="text" class="form-control" ng-model="searchFilter" style='opacity: 1.0;' placeholder=''>
     </div>
     <button type="submit" class="btn btn-default opacity-full">Submit</button>
   </form>
@@ -82,7 +82,18 @@
           <p>How much?</p>
           <a href="#search">
             <div class="">
-              <p>Avg Price: {{Ploperty.avg_price | currency: 'SGD'}}</p>
+              <!-- <p>Avg Price: {{Ploperty.avg_price | currency: 'SGD'}}</p> -->
+
+              <!-- <p>Avg Price: {{ averagePrice(items.features) | filter:{'district':searchFilter} | currency: 'SGD' }}</p> -->
+              <!-- <div ng-init="sum=0">
+                <p ng-repeat="listing in Ploperty.pdata.features">
+                  <div ng-init="$parent.sum = $parent.sum + listing.properties.price2">
+                  </div>
+                    Avg Price: {{ sum }}
+                </p>
+              </div> -->
+
+                <p>Avg Price {{ averagePrice() | currency  }}</p>
             </div>
           </a>
           <br /><br />
@@ -129,7 +140,7 @@
   <script>
     var app = angular.module('Ploperty',[]);
 
-     app.controller('PlopertyController', function($http, $rootScope){
+     app.controller('PlopertyController', function($scope, $http, $rootScope){
          var Ploperty = this;
          Ploperty.pdata  = null;
 
@@ -137,30 +148,59 @@
 
          Ploperty.getData = function() {
              $http.get('https://raw.githubusercontent.com/winstonmi/ploperty/gh-pages/public/jus.geojson').success(function(data) {
-                 Ploperty.pdata = data
+                 //Ploperty.pdata = data
+                 $scope.items =  data;
                  console.log('Get geojson data success')
                  //console.log(Ploperty.pdata.features[0].properties.price)
-                Ploperty.avg_price = avg(sum_price(),count_all());
+                 updateData();
              }) //close $http
         }()//close getData function and run it
 
-        function avg(sum, count) {
+        function avg(sum,count) {
           return sum/count;
+        }
+        //
+        //updates various calculations in one place
+        function updateData() {
+          Ploperty.avg_price = avg(sum_price(),count_all());
         }
 
         function sum_price() {
           var result =0;
-          for(var i=0; i<Ploperty.pdata.features.length; i++) {
-            result += Ploperty.pdata.features[i].properties.price2;
+          for(var i=0; i<$scope.items.features.length; i++) {
+            result += $scope.items.features[i].properties.price2;
           }
-          console.log("Sum of price: " + result)
           return result;
         }
 
-         function count_all() {
-           console.log("Count of: " + Ploperty.pdata.features.length)
-           return Ploperty.pdata.features.length;
-         }
+        function count_all(){
+          return $scope.items.features.length;
+        }
+
+        $scope.averagePrice = function() {
+          if($scope.items===undefined ||  $scope.items.features.length===0) return 0
+
+          var sum =0;
+          var count =0;
+          var searchTerm;
+          if($scope.searchFilter === undefined ) {
+            searchTerm = ''
+          } else {
+            searchTerm=$scope.searchFilter.concat(' ')
+          }
+
+          // console.log("searchFilter: " + searchTerm)
+          // console.log('first district: '+  $scope.items.features[0].properties.district.length)
+          // console.log($scope.items.features[0].properties.district == searchTerm)
+          for(var i=0; i<$scope.items.features.length; i++) {
+            if(searchTerm === '' || $scope.items.features[i].properties.district==searchTerm){
+              sum += $scope.items.features[i].properties.price2;
+              count += 1
+            }
+          }
+          return (sum / count);
+        }
+
 
      })//close angular controller
 
