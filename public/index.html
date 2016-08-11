@@ -190,7 +190,7 @@
         .setView([1.3521,103.8198], 12)
         .addLayer(L.mapbox.tileLayer('mapbox.streets'));
       L.mapbox.featureLayer()
-        .loadURL('https://github.com/juschan/Project_4E/blob/master/public/result_3.geojson')
+        .loadURL('https://raw.githubusercontent.com/juschan/Project_4E/master/public/result_5.geojson')
         .on('ready', function(e) {
           var clusterGroup = new L.MarkerClusterGroup();
           e.target.eachLayer(function(layer) {
