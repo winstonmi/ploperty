@@ -188,9 +188,9 @@
       //US data
       var mapCluster = L.mapbox.map('map-cluster')
         .setView([1.3521,103.8198], 12)
-        .addLayer(L.mapbox.tileLayer('mapbox.light'));
+        .addLayer(L.mapbox.tileLayer('mapbox.streets'));
       L.mapbox.featureLayer()
-        .loadURL('https://raw.githubusercontent.com/winstonmi/ploperty/gh-pages/data.geojson')
+        .loadURL('https://github.com/juschan/Project_4E/blob/master/public/result_3.geojson')
         .on('ready', function(e) {
           var clusterGroup = new L.MarkerClusterGroup();
           e.target.eachLayer(function(layer) {
