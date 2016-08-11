@@ -67,7 +67,6 @@
   </form>
 </div>
 
-
 <!-- Container (data Section) -->
 <div id="data" class="bg-1">
   <div class="container">
@@ -83,7 +82,7 @@
           <p>How much?</p>
           <a href="#search">
             <div class="">
-
+              <p>Avg Price: {{Ploperty.avg_price}}</p>
             </div>
           </a>
           <br /><br />
@@ -119,7 +118,6 @@
   </div>
 </div>
 
-
 <!-- Footer -->
 <footer class="text-center">
   <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
@@ -132,25 +130,48 @@
     var app = angular.module('Ploperty',[]);
 
      app.controller('PlopertyController', function($http, $rootScope){
-         var APIdotYou = this;
-         APIdotYou.oneself  = null;
+         var Ploperty = this;
+         Ploperty.pdata  = null;
 
-         APIdotYou.getData = function() {
-             $http.get('https://obscure-mesa-68731.herokuapp.com/all').success(function(data) {
-                 APIdotYou.oneself = data.oneself
-                 console.log('Get request success')
+         Ploperty.avg_price = 0;
+
+         Ploperty.getData = function() {
+             $http.get('https://raw.githubusercontent.com/winstonmi/ploperty/gh-pages/public/jus.geojson').success(function(data) {
+                 Ploperty.pdata = data
+                 console.log('Get geojson data success')
+                 console.log(Ploperty.pdata.features[0].properties.price)
+                Ploperty.avg_price = avg(sum_price()/count_all());
              }) //close $http
         }()//close getData function and run it
 
+        function avg(sum, count) {
+          return sum/count;
+        }
+
+        function sum_price() {
+          var result =0;
+          for(var i=0; i<Ploperty.pdata.features.length; i++) {
+            result += Ploperty.pdata.features[i].properties.price;
+          }
+          return result;
+        }
+
+         function count_all() {
+           return Ploperty.pdata.features.length;
+         }
+
      })//close angular controller
 
-  </script>
 
+
+
+
+  </script>
 
   <!-- Mapbox.js -->
   <script>
   $(function() {
-    console.log("hi")
+    //console.log("hi")
     L.mapbox.accessToken = 'pk.eyJ1Ijoid2luc3Rvbm1pIiwiYSI6ImNpcmx2NTJ5MjAwNWJmYW02bGZiMmN6ZmMifQ.DfLwDrBNUttzcAazjo6pqw';
 
       //SG data
