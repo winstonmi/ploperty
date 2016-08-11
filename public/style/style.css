@@ -13,7 +13,6 @@ body {
   }
   .container {
       padding: 0px 0px 0px 0px;
-      border: solid 2px pink;
   }
 
   .map {
@@ -78,7 +77,7 @@ body {
       color: #777 !important;
   }
   .navbar-nav li a:hover {
-      color: #fff !important;
+      color: #85e7db !important;
   }
   .navbar-nav li.active a {
       font-family: 'Open Sans', sans-serif;
