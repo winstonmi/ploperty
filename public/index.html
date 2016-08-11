@@ -60,11 +60,39 @@
 </div>
 <div id='search'>
   <form class="navbar-form">
-    <div class="form-group">
-      <input type="text" class="form-control" ng-model="searchFilter" style='opacity: 1.0;' placeholder=''>
+      <select name="singleSelect" id="singleSelect" ng-model="searchFilter">
+        <option value="Singapore">Singapore</option>
+        <option value="Raffles Place, Cecil, Marina, People's Park">Raffles Place, Cecil, Marina, People's Park</option>
+        <option value="Anson, Tanjong Pagar">Anson, Tanjong Pagar</option>
+        <option value="Queenstown, Tiong Bahru">Queenstown, Tiong Bahru</option>
+        <option value="Telok Blangah, Harbourfront">Telok Blangah, Harbourfront</option>
+        <option value="Pasir Panjang, Hong Leong Garden, Clementi New Town">Pasir Panjang, Hong Leong Garden, Clementi New Town</option>
+        <option value="High Street, Beach Road (part)">High Street, Beach Road (part)</option>
+        <option value="Middle Road, Golden Mile">Middle Road, Golden Mile</option>
+        <option value="Little India">Little India</option>
+        <option value="Orchard, Cairnhill, River Valley">Orchard, Cairnhill, River Valley</option>
+        <option value="Ardmore, Bukit Timah, Holland Road, Tanglin">Ardmore, Bukit Timah, Holland Road, Tanglin</option>
+        <option value="Watten Estate, Novena, Thomson">Watten Estate, Novena, Thomson</option>
+        <option value="Balestier, Toa Payoh, Serangoon">Balestier, Toa Payoh, Serangoon</option>
+        <option value="Macpherson, Braddell">Macpherson, Braddell</option>
+        <option value="Geylang, Eunos">Geylang, Eunos</option>
+        <option value="Katong, Joo Chiat, Amber Road">Katong, Joo Chiat, Amber Road</option>
+        <option value="Bedok, Upper East Coast, Eastwood, Kew Drive">Bedok, Upper East Coast, Eastwood, Kew Drive</option>
+        <option value="Loyang, Changi">Loyang, Changi</option>
+        <option value="Tampines, Pasir Ris">Tampines, Pasir Ris</option>
+        <option value="Serangoon Garden, Hougang, Ponggol">Serangoon Garden, Hougang, Ponggol</option>
+        <option value="Bishan, Ang Mo Kio">Bishan, Ang Mo Kio</option>
+        <option value="Upper Bukit Timah, Clementi Park, Ulu Pandan">Upper Bukit Timah, Clementi Park, Ulu Pandan</option>
+        <option value="Jurong">Jurong</option>
+        <option value="Hillview, Dairy Farm, Bukit Panjang, Choa Chu Kang">Hillview, Dairy Farm, Bukit Panjang, Choa Chu Kang</option>
+        <option value="Lim Chu Kang, Tengah">Lim Chu Kang, Tengah</option>
+        <option value="Kranji, Woodgrove">Kranji, Woodgrove</option>
+        <option value="Upper Thomson, Springleaf">Upper Thomson, Springleaf</option>
+        <option value="Yishun, Sembawang">Yishun, Sembawang</option>
+        <option value="Seletar">Seletar</option>
+
+      </select>
     </div>
-    <button type="submit" class="btn btn-default opacity-full">Submit</button>
-  </form>
 </div>
 
 <!-- Container (data Section) -->
@@ -94,7 +122,7 @@
               </div> -->
                 <p>Number of Listings {{ countListings()  }}</p>
                 <p>Avg Price {{ averagePrice() | currency  }}</p>
-                <p>Avg PSF {{ averagePSF()  }}</p>
+                <p>Avg PSF {{ averagePSF() | currency }}</p>
 
             </div>
           </a>
@@ -108,8 +136,8 @@
           <p>How big?</p>
           <a href="#search">
             <div class="">
-              <p>Average Size per Listing {{ averageSize() }}</p>
-             <p>Average Number Bedrooms per Listing {{ averageBeds()  }}</p>
+              <p>Average Size per Listing {{ averageSize() | number:2 }}</p>
+             <p>Average Number Bedrooms per Listing {{ averageBeds() | number:2  }}</p>
             </div>
           </a>
           <br /><br />
@@ -180,6 +208,30 @@
           return $scope.items.features.length;
         }
 
+        $scope.countListings = function() {
+          if($scope.items===undefined ||  $scope.items.features.length===0) return 0
+
+          var count =0;
+          var searchTerm;
+          if($scope.searchFilter === undefined ) {
+            searchTerm = ''
+          } else {
+            searchTerm=$scope.searchFilter.concat(' ')
+          }
+
+          //if (searchTerm == 'Singapore' ) searchTerm = ''
+          // console.log(searchTerm)
+          // console.log('Singapore')
+          // console.log("test singapore: " + (searchTerm == 'Singapore '))
+          // console.log("length: " + searchTerm.length + ' ' + 'Singapore '.length)
+          for(var i=0; i<$scope.items.features.length; i++) {
+            if(searchTerm === '' || searchTerm == 'Singapore ' || $scope.items.features[i].properties.district==searchTerm){
+              count +=1
+            }
+          }
+          return count;
+        }
+
         $scope.averagePrice = function() {
           if($scope.items===undefined ||  $scope.items.features.length===0) return 0
 
@@ -196,7 +248,7 @@
           // console.log('first district: '+  $scope.items.features[0].properties.district.length)
           // console.log($scope.items.features[0].properties.district == searchTerm)
           for(var i=0; i<$scope.items.features.length; i++) {
-            if(searchTerm === '' || $scope.items.features[i].properties.district==searchTerm){
+            if(searchTerm === '' || searchTerm == 'Singapore ' || $scope.items.features[i].properties.district==searchTerm){
               sum += $scope.items.features[i].properties.price2;
               count += 1
             }
@@ -217,7 +269,7 @@
           }
 
           for(var i=0; i<$scope.items.features.length; i++) {
-            if(searchTerm === '' || $scope.items.features[i].properties.district==searchTerm){
+            if(searchTerm === '' || searchTerm == 'Singapore ' || $scope.items.features[i].properties.district==searchTerm){
               sum += $scope.items.features[i].properties.psf2;
               count += 1
             }
@@ -225,7 +277,7 @@
           return (sum / count);
         }
 
-        $scope.averagesize = function() {
+        $scope.averageSize = function() {
           if($scope.items===undefined ||  $scope.items.features.length===0) return 0
 
           var sum =0;
@@ -238,7 +290,7 @@
           }
 
           for(var i=0; i<$scope.items.features.length; i++) {
-            if(searchTerm === '' || $scope.items.features[i].properties.district==searchTerm){
+            if(searchTerm === '' || searchTerm == 'Singapore ' || $scope.items.features[i].properties.district==searchTerm){
               sum += $scope.items.features[i].properties.size2;
               count +=1
             }
@@ -260,49 +312,12 @@
           }
 
           for(var i=0; i<$scope.items.features.length; i++) {
-            if(searchTerm === '' || $scope.items.features[i].properties.district==searchTerm){
+            if(searchTerm === '' || searchTerm == 'Singapore ' || $scope.items.features[i].properties.district==searchTerm){
               sum += $scope.items.features[i].properties.bed_no;
               count +=1
             }
           }
           return sum/count;
-        }
-
-        $scope.countListings = function() {
-          if($scope.items===undefined ||  $scope.items.features.length===0) return 0
-
-          var count =0;
-          var searchTerm;
-          if($scope.searchFilter === undefined ) {
-            searchTerm = ''
-          } else {
-            searchTerm=$scope.searchFilter.concat(' ')
-          }
-
-          for(var i=0; i<$scope.items.features.length; i++) {
-            if(searchTerm === '' || $scope.items.features[i].properties.district==searchTerm){
-              count +=1
-            }
-          }
-          return count;
-        }
-        $scope.averageSize = function() {
-          if($scope.items===undefined ||  $scope.items.features.length===0) return 0
-
-          var count =0;
-          var searchTerm;
-          if($scope.searchFilter === undefined ) {
-            searchTerm = ''
-          } else {
-            searchTerm=$scope.searchFilter.concat(' ')
-          }
-
-          for(var i=0; i<$scope.items.features.length; i++) {
-            if(searchTerm === '' || $scope.items.features[i].properties.district==searchTerm){
-              count +=1
-            }
-          }
-          return count;
         }
 
      })//close angular controller
