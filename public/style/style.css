@@ -1,7 +1,6 @@
 body {
       font: 400 15px/1.8 Lato, 'Open Sans', sans-serif;
       color: #FFF;
-
   }
   h3, h4 {
       margin: 10px 0 10px 0;
@@ -15,8 +14,7 @@ body {
   }
 
   .map {
-    position:absolute;
-    margin-top: 70px;
+    margin-top: 0px;
     width:100%;
     height: 70%;
   }
@@ -117,11 +115,18 @@ body {
   }
   .navbar-nav li.active a {
       font-family: 'Open Sans', sans-serif;
-      color: #fff !important;
-      background-color: #29292c !important;
+      color: #73b6e5 !important;
+      background-color: #fff !important;
   }
   .navbar-default .navbar-toggle {
       border-color: transparent;
+      position: absolute;
+      top: -280px;
+      right: 60px;
+  }
+
+  #myNavbar {
+    background-color: #fff;
   }
 
   footer {
@@ -139,4 +144,28 @@ div span {
    width: 100%;
    text-align: center;
    margin: 0 auto;
+}
+
+@media screen and (max-width: 800px) {
+  #search {
+    text-align: center;
+    margin-top: 600px;
+  }
+  .form-control {
+    font-size: 90%;
+  }
+  p {
+    
+  }
+  .thumbnail {
+    width: 100%;
+    margin-top: -10px;
+    height: 200px;
+  }
+  .text-center {
+    margin: 0px 0px 20px 0px;
+  }
+  .table {
+    width: 100%;
+  }
 }
